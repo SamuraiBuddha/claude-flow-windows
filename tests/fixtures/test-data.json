@@ -1,0 +1,163 @@
+{
+  "commands": {
+    "unix_commands": [
+      "ls -la",
+      "grep -r 'pattern' .",
+      "find . -name '*.js' -type f",
+      "cat file.txt | grep 'search'",
+      "ps aux | grep 'node'",
+      "mkdir -p nested/dir/structure",
+      "cp -r source/ destination/",
+      "mv oldfile.txt newfile.txt",
+      "curl -X POST https://api.example.com/data",
+      "tail -f logfile.txt",
+      "head -n 10 data.txt",
+      "wc -l *.txt",
+      "chmod +x script.sh",
+      "tar -xzf archive.tar.gz",
+      "ln -s target linkname"
+    ],
+    "powershell_expected": [
+      "Get-ChildItem -la",
+      "Get-ChildItem -Recurse | Select-String -Pattern 'pattern'",
+      "Get-ChildItem -Path . -Filter '*.js' -Recurse",
+      "Get-Content file.txt | Select-String -Pattern 'search'",
+      "Get-Process | Select-String -Pattern 'node'",
+      "New-Item -ItemType Directory -Path nested\\dir\\structure -Force",
+      "Copy-Item -Path source\\ -Destination destination\\ -Recurse",
+      "Move-Item -Path oldfile.txt -Destination newfile.txt",
+      "Invoke-RestMethod -Uri https://api.example.com/data -Method POST",
+      "Get-Content logfile.txt -Wait",
+      "Get-Content data.txt -Head 10",
+      "Get-ChildItem *.txt | ForEach-Object { (Get-Content $_.FullName | Measure-Object -Line).Lines }",
+      "# Windows equivalent: icacls or Set-ExecutionPolicy",
+      "Expand-Archive -Path archive.tar.gz -DestinationPath .",
+      "New-Item -ItemType SymbolicLink -Path linkname -Target target"
+    ],
+    "complex_pipelines": [
+      "ps aux | grep node | awk '{print $2}' | xargs kill",
+      "find . -name '*.log' -exec grep -l 'ERROR' {} \\;",
+      "cat access.log | grep '404' | cut -d' ' -f1 | sort | uniq -c",
+      "ls -la | grep '^d' | wc -l"
+    ]
+  },
+  "agent_types": [
+    {
+      "type": "supervisor",
+      "description": "Manages and coordinates other agents",
+      "defaultSkills": ["task_distribution", "monitoring", "coordination"],
+      "maxConcurrentTasks": 10,
+      "priority": "high"
+    },
+    {
+      "type": "worker",
+      "description": "Executes assigned tasks",
+      "defaultSkills": ["code_generation", "testing", "documentation"],
+      "maxConcurrentTasks": 5,
+      "priority": "medium"
+    },
+    {
+      "type": "specialist",
+      "description": "Handles domain-specific tasks",
+      "defaultSkills": ["specialized_knowledge"],
+      "maxConcurrentTasks": 3,
+      "priority": "high"
+    },
+    {
+      "type": "orchestrator",
+      "description": "Central coordination hub",
+      "defaultSkills": ["task_routing", "resource_management"],
+      "maxConcurrentTasks": 15,
+      "priority": "critical"
+    },
+    {
+      "type": "executor",
+      "description": "Simple task execution",
+      "defaultSkills": ["basic_operations"],
+      "maxConcurrentTasks": 2,
+      "priority": "low"
+    }
+  ],
+  "swarm_topologies": {
+    "hierarchical": {
+      "structure": "tree-like with supervisor-worker relationships",
+      "advantages": ["clear command structure", "efficient delegation"],
+      "bestFor": ["complex projects", "clear task hierarchies"],
+      "minAgents": 3,
+      "maxAgents": 20
+    },
+    "mesh": {
+      "structure": "peer-to-peer with full connectivity",
+      "advantages": ["fault tolerance", "parallel processing"],
+      "bestFor": ["collaborative tasks", "high availability"],
+      "minAgents": 4,
+      "maxAgents": 15
+    },
+    "star": {
+      "structure": "central hub with connected spokes",
+      "advantages": ["centralized control", "simple coordination"],
+      "bestFor": ["task distribution", "resource management"],
+      "minAgents": 3,
+      "maxAgents": 25
+    },
+    "ring": {
+      "structure": "circular chain of agents",
+      "advantages": ["sequential processing", "predictable flow"],
+      "bestFor": ["pipeline tasks", "ordered workflows"],
+      "minAgents": 3,
+      "maxAgents": 12
+    },
+    "adaptive": {
+      "structure": "dynamic topology that changes based on load",
+      "advantages": ["flexibility", "resource optimization"],
+      "bestFor": ["variable workloads", "unknown requirements"],
+      "minAgents": 2,
+      "maxAgents": 50
+    }
+  },
+  "performance_metrics": {
+    "response_times": {
+      "excellent": "< 100ms",
+      "good": "100-500ms", 
+      "acceptable": "500ms-2s",
+      "poor": "> 2s"
+    },
+    "success_rates": {
+      "excellent": "> 0.99",
+      "good": "0.95-0.99",
+      "acceptable": "0.90-0.95",
+      "poor": "< 0.90"
+    },
+    "throughput": {
+      "high": "> 50 tasks/min",
+      "medium": "20-50 tasks/min",
+      "low": "< 20 tasks/min"
+    }
+  },
+  "test_scenarios": {
+    "load_testing": {
+      "concurrent_swarms": [1, 3, 5, 10],
+      "agents_per_swarm": [2, 5, 10, 20],
+      "tasks_per_minute": [10, 50, 100, 500],
+      "duration_minutes": [1, 5, 15, 30]
+    },
+    "error_conditions": [
+      "network_timeout",
+      "memory_exhaustion", 
+      "agent_crash",
+      "invalid_command",
+      "permission_denied",
+      "disk_full",
+      "resource_contention"
+    ],
+    "edge_cases": [
+      "empty_swarm",
+      "single_agent",
+      "maximum_agents",
+      "rapid_scaling",
+      "topology_switching",
+      "memory_corruption",
+      "partial_failures"
+    ]
+  }
+}

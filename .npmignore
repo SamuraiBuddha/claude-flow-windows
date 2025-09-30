@@ -1,0 +1,45 @@
+# Source files
+src/
+tests/
+*.ts
+!*.d.ts
+
+# Development files
+.github/
+docs/
+examples/
+*.spec.ts
+*.spec.js
+*.test.ts
+*.test.js
+vitest.config.ts
+tsconfig.json
+
+# Build artifacts
+*.tsbuildinfo
+coverage/
+.nyc_output/
+
+# Development dependencies
+.vscode/
+.idea/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Keep only dist and essential files
+!dist/
+!package.json
+!README.md
+!LICENSE
+!CHANGELOG.md

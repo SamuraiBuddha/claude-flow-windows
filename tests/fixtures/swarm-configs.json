@@ -1,0 +1,91 @@
+{
+  "hierarchical": {
+    "topology": "hierarchical",
+    "maxAgents": 5,
+    "strategy": "balanced",
+    "enableMemory": true,
+    "agentConfig": {
+      "supervisor": {
+        "type": "supervisor",
+        "skills": ["task_distribution", "monitoring", "coordination"]
+      },
+      "workers": [
+        {
+          "type": "worker",
+          "skills": ["code_generation", "testing"]
+        },
+        {
+          "type": "worker", 
+          "skills": ["documentation", "review"]
+        }
+      ]
+    }
+  },
+  "mesh": {
+    "topology": "mesh",
+    "maxAgents": 6,
+    "strategy": "parallel",
+    "enableMemory": true,
+    "agentConfig": {
+      "peers": [
+        { "type": "specialist", "skills": ["backend_development"] },
+        { "type": "specialist", "skills": ["frontend_development"] },
+        { "type": "specialist", "skills": ["database_management"] },
+        { "type": "specialist", "skills": ["testing_automation"] },
+        { "type": "specialist", "skills": ["devops_deployment"] },
+        { "type": "specialist", "skills": ["security_analysis"] }
+      ]
+    }
+  },
+  "star": {
+    "topology": "star",
+    "maxAgents": 7,
+    "strategy": "centralized",
+    "enableMemory": false,
+    "agentConfig": {
+      "hub": {
+        "type": "orchestrator",
+        "skills": ["task_routing", "resource_management", "communication"]
+      },
+      "spokes": [
+        { "type": "executor", "skills": ["code_execution"] },
+        { "type": "executor", "skills": ["data_processing"] },
+        { "type": "executor", "skills": ["file_management"] },
+        { "type": "executor", "skills": ["system_monitoring"] },
+        { "type": "executor", "skills": ["user_interaction"] },
+        { "type": "executor", "skills": ["error_handling"] }
+      ]
+    }
+  },
+  "ring": {
+    "topology": "ring",
+    "maxAgents": 4,
+    "strategy": "sequential",
+    "enableMemory": true,
+    "agentConfig": {
+      "nodes": [
+        { "type": "planner", "skills": ["requirement_analysis", "task_planning"] },
+        { "type": "developer", "skills": ["implementation", "coding"] },
+        { "type": "tester", "skills": ["testing", "validation"] },
+        { "type": "deployer", "skills": ["deployment", "monitoring"] }
+      ]
+    }
+  },
+  "adaptive": {
+    "topology": "adaptive",
+    "maxAgents": 8,
+    "strategy": "dynamic",
+    "enableMemory": true,
+    "agentConfig": {
+      "initialAgents": [
+        { "type": "analyzer", "skills": ["workload_analysis", "pattern_recognition"] },
+        { "type": "coordinator", "skills": ["resource_allocation", "load_balancing"] }
+      ],
+      "adaptiveRules": {
+        "spawnThreshold": 0.8,
+        "terminateThreshold": 0.3,
+        "evaluationInterval": 30000
+      }
+    }
+  }
+}

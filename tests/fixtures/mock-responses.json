@@ -1,0 +1,214 @@
+{
+  "swarm_responses": {
+    "initialize_success": {
+      "swarmId": "swarm_12345",
+      "topology": "hierarchical",
+      "status": "active",
+      "agentCount": 5,
+      "createdAt": "2025-01-20T10:30:00Z",
+      "config": {
+        "maxAgents": 5,
+        "strategy": "balanced",
+        "enableMemory": true
+      }
+    },
+    "status_response": {
+      "swarmId": "swarm_12345",
+      "topology": "hierarchical",
+      "status": "active",
+      "uptime": 3600000,
+      "agents": [
+        {
+          "id": "agent_001",
+          "type": "supervisor",
+          "status": "active",
+          "currentTask": "monitoring",
+          "performance": {
+            "tasksCompleted": 25,
+            "avgResponseTime": 150,
+            "successRate": 0.96
+          }
+        },
+        {
+          "id": "agent_002",
+          "type": "worker",
+          "status": "active",
+          "currentTask": "code_generation",
+          "performance": {
+            "tasksCompleted": 18,
+            "avgResponseTime": 300,
+            "successRate": 0.94
+          }
+        }
+      ],
+      "metrics": {
+        "totalTasks": 150,
+        "completedTasks": 143,
+        "failedTasks": 7,
+        "avgResponseTime": 225,
+        "throughput": 12.5,
+        "resourceUtilization": {
+          "cpu": 0.45,
+          "memory": 0.62,
+          "network": 0.23
+        }
+      }
+    },
+    "performance_report": {
+      "swarmCount": 3,
+      "totalAgents": 15,
+      "reportPeriod": "1h",
+      "overview": {
+        "totalTasks": 450,
+        "completedTasks": 425,
+        "successRate": 0.94,
+        "avgResponseTime": 275
+      },
+      "swarmBreakdown": [
+        {
+          "swarmId": "swarm_001",
+          "topology": "hierarchical",
+          "performance": "excellent",
+          "bottlenecks": []
+        },
+        {
+          "swarmId": "swarm_002", 
+          "topology": "mesh",
+          "performance": "good",
+          "bottlenecks": ["high_network_latency"]
+        }
+      ],
+      "recommendations": [
+        "Consider increasing agent count for swarm_002",
+        "Monitor network performance for mesh topology"
+      ]
+    }
+  },
+  "agent_responses": {
+    "spawn_success": {
+      "agentId": "agent_12345",
+      "type": "worker",
+      "status": "active",
+      "skills": ["code_generation", "testing"],
+      "spawnedAt": "2025-01-20T10:30:00Z",
+      "config": {
+        "maxConcurrentTasks": 3,
+        "timeoutMs": 30000,
+        "retryAttempts": 3
+      }
+    },
+    "agent_metrics": {
+      "agentId": "agent_12345",
+      "uptime": 1800000,
+      "performance": {
+        "tasksCompleted": 42,
+        "tasksInProgress": 2,
+        "tasksFailed": 3,
+        "avgExecutionTime": 2500,
+        "successRate": 0.93
+      },
+      "resourceUsage": {
+        "cpuPercent": 15.3,
+        "memoryMB": 128.5,
+        "diskIOBytes": 1048576
+      },
+      "lastActivity": "2025-01-20T10:45:30Z"
+    },
+    "list_agents": [
+      {
+        "id": "agent_001",
+        "type": "supervisor",
+        "status": "active",
+        "swarmId": "swarm_12345"
+      },
+      {
+        "id": "agent_002",
+        "type": "worker", 
+        "status": "active",
+        "swarmId": "swarm_12345"
+      },
+      {
+        "id": "agent_003",
+        "type": "specialist",
+        "status": "idle",
+        "swarmId": "swarm_67890"
+      }
+    ]
+  },
+  "shell_responses": {
+    "powershell_success": {
+      "command": "Get-ChildItem -Path C:\\test",
+      "output": "Directory: C:\\test\n\nMode                 LastWriteTime         Length Name\n----                 -------------         ------ ----\n-a----          1/20/2025   10:30 AM           1024 file1.txt\n-a----          1/20/2025   10:31 AM           2048 file2.txt",
+      "exitCode": 0,
+      "executionTime": 150
+    },
+    "wsl_bridge_success": {
+      "command": "find . -name '*.js' -type f",
+      "output": "./src/index.js\n./src/utils.js\n./tests/test.js",
+      "exitCode": 0,
+      "executionTime": 250,
+      "wslDistro": "Ubuntu"
+    },
+    "command_conversion": {
+      "ls -la": "Get-ChildItem -la",
+      "grep pattern": "Select-String -Pattern 'pattern'",
+      "cat file.txt": "Get-Content file.txt",
+      "ps aux": "Get-Process",
+      "find . -name '*.js'": "Get-ChildItem -Path . -Filter '*.js' -Recurse",
+      "mkdir -p dir/subdir": "New-Item -ItemType Directory -Path dir\\subdir -Force"
+    }
+  },
+  "memory_responses": {
+    "store_success": {
+      "key": "swarm-config",
+      "namespace": "swarm-state", 
+      "stored": true,
+      "timestamp": "2025-01-20T10:30:00Z"
+    },
+    "retrieve_success": {
+      "key": "swarm-config",
+      "namespace": "swarm-state",
+      "value": {
+        "topology": "star",
+        "agents": 5,
+        "lastUpdate": "2025-01-20T10:25:00Z"
+      },
+      "found": true
+    },
+    "export_success": {
+      "action": "export",
+      "path": "./memory-export.json", 
+      "recordCount": 150,
+      "exported": true,
+      "timestamp": "2025-01-20T10:35:00Z"
+    }
+  },
+  "error_responses": {
+    "swarm_not_found": {
+      "error": "SwarmNotFound",
+      "message": "Swarm with ID 'invalid_swarm' not found",
+      "code": "SWARM_404"
+    },
+    "agent_spawn_failed": {
+      "error": "AgentSpawnFailed",
+      "message": "Failed to spawn agent: insufficient resources",
+      "code": "AGENT_500",
+      "details": {
+        "memoryRequired": "256MB",
+        "memoryAvailable": "128MB"
+      }
+    },
+    "command_execution_failed": {
+      "error": "CommandExecutionFailed",
+      "message": "PowerShell command failed with exit code 1",
+      "code": "SHELL_001",
+      "stderr": "Get-ChildItem : Cannot find path 'C:\\nonexistent' because it does not exist."
+    },
+    "memory_corruption": {
+      "error": "MemoryCorruption",
+      "message": "Memory store corruption detected",
+      "code": "MEM_500",
+      "affectedKeys": ["swarm-config", "agent-state"]
+    }
+  }
+}
