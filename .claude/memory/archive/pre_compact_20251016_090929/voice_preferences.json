@@ -1,0 +1,27 @@
+{
+  "voiceEnabled": true,
+  "CriticalVoiceAlerts": true,
+  "HighVoiceAlerts": true,
+  "NormalVoiceAlerts": false,
+  "LowVoiceAlerts": false,
+  "voiceActivationKeywords": [
+    "speak",
+    "say",
+    "tell me",
+    "voice",
+    "read",
+    "announce",
+    "whisper",
+    "listen",
+    "hear"
+  ],
+  "ttsEngine": "WindowsSAPI",
+  "ttsVoice": "Female",
+  "ttsRate": 0,
+  "ttsVolume": 100,
+  "whisperModel": "tiny",
+  "whisperLanguage": "en",
+  "sessionSummaryVoice": true,
+  "agentCompletionVoice": false,
+  "errorNotificationVoice": true
+}
