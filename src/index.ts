@@ -440,14 +440,15 @@ class ClaudeFlowServer {
 }
 
 // Start server if run directly
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 import { dirname } from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Check if this module is being run directly
-if (import.meta.url === `file://${process.argv[1]}`.replace(/\\/g, '/')) {
+// Check if this module is being run directly (Windows-compatible)
+const isMainModule = import.meta.url === pathToFileURL(process.argv[1]).href;
+if (isMainModule) {
   const server = new ClaudeFlowServer();
   server.start().catch((error) => {
     console.error('Server failed to start:', error);
