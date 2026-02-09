@@ -124,15 +124,15 @@ try {
 
 ### Dual-Tracking Verification
 - **Neo4j Entries**: $($tracking.Neo4jEntries)
-- **Tracking Document**: $(if ($tracking.TrackingDoc) { "✓ Created" } else { "✗ Missing" })
-- **Compliance Status**: $(if ($tracking.Compliant) { "✓ COMPLIANT" } else { "⚠ NON-COMPLIANT" })
+- **Tracking Document**: $(if ($tracking.TrackingDoc) { "[OK] Created" } else { "[MISSING]" })
+- **Compliance Status**: $(if ($tracking.Compliant) { "[OK] COMPLIANT" } else { "[WARN] NON-COMPLIANT" })
 
 "@
 
     # Add compliance warning if needed
     if (-not $tracking.Compliant) {
         $summary += @"
-### ⚠ COMPLIANCE WARNING
+### [!] COMPLIANCE WARNING
 Dual-tracking protocol may not have been followed completely.
 Please verify:
 1. Neo4j memories were created for significant work
@@ -150,7 +150,7 @@ Please verify:
 ### Orchestration Metrics
 - **Delegation Rate**: $(if ($stats.ToolsUsed -gt 0) { [math]::Round(($stats.AgentsSpawned / $stats.ToolsUsed) * 100, 1) } else { 0 })%
 - **Agent Efficiency**: Maintained orchestration-first pattern
-- **Code Tasks Delegated**: ✓ Following CasparCode-002 protocol
+- **Code Tasks Delegated**: [OK] Following CasparCode-002 protocol
 
 "@
     }
